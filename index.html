@@ -17,11 +17,23 @@
             color: white;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
         nav a {
             color: white;
             margin: 0 10px;
             text-decoration: none;
+        }
+        .lang-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: #ff9800;
+            border: none;
+            padding: 8px 12px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
         section {
             max-width: 900px;
@@ -53,44 +65,94 @@
 <body>
 
 <header>
-    <h1>Нурсултан Кошоев</h1>
+    <h1 id="name">Нурсултан Кошоев</h1>
+    <button class="lang-btn" onclick="toggleLang()">EN</button>
     <nav>
-        <a href="#about">Обо мне</a>
-        <a href="#projects">Проекты</a>
-        <a href="#contacts">Контакты</a>
+        <a href="#about" id="nav-about">Обо мне</a>
+        <a href="#projects" id="nav-projects">Проекты</a>
+        <a href="#contacts" id="nav-contacts">Контакты</a>
     </nav>
 </header>
 
 <section id="about">
-    <h2>Обо мне</h2>
-    <p>Я — программист и разработчик игр. Создаю проекты на Unreal Engine, C++ и других технологиях. Люблю футбол, шахматы и изучаю английский язык.</p>
+    <h2 id="about-title">Обо мне</h2>
+    <p id="about-text">Я — программист и разработчик игр. Создаю проекты на Unreal Engine, C++ и других технологиях. Люблю футбол, шахматы и изучаю английский язык.</p>
 </section>
 
 <section id="projects">
-    <h2>Мои проекты</h2>
+    <h2 id="projects-title">Мои проекты</h2>
     <div class="project">
-        <h3>Drift Car</h3>
-        <p>Реалистичный симулятор дрифта с проработанной физикой автомобиля.</p>
+        <h3 id="p1-title">Drift Car</h3>
+        <p id="p1-text">Реалистичный симулятор дрифта с проработанной физикой автомобиля.</p>
     </div>
     <div class="project">
-        <h3>Robot War</h3>
-        <p>Мультиплеерный шутер с различными способностями персонажей.</p>
+        <h3 id="p2-title">Robot War</h3>
+        <p id="p2-text">Мультиплеерный шутер с различными способностями персонажей.</p>
     </div>
     <div class="project">
-        <h3>Warcos 2</h3>
-        <p>FPS-шутер с реалистичной физикой и новыми способностями персонажей. <a href="https://store.steampowered.com/app/2498610/Warcos_2/" target="_blank">Ссылка на Steam</a></p>
+        <h3 id="p3-title">Warcos 2</h3>
+        <p id="p3-text">FPS-шутер с реалистичной физикой и новыми способностями персонажей. <a href="https://store.steampowered.com/app/2498610/Warcos_2/" target="_blank">Ссылка на Steam</a></p>
     </div>
 </section>
 
 <section id="contacts">
-    <h2>Контакты</h2>
+    <h2 id="contacts-title">Контакты</h2>
     <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
     <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
 </section>
 
 <footer>
-    <p>© 2025 Нурсултан Кошоев</p>
+    <p>© 2025 <span id="footer-name">Нурсултан Кошоев</span></p>
 </footer>
+
+<script>
+let lang = "ru";
+
+const content = {
+    ru: {
+        name: "Нурсултан Кошоев",
+        nav_about: "Обо мне",
+        nav_projects: "Проекты",
+        nav_contacts: "Контакты",
+        about_title: "Обо мне",
+        about_text: "Я — программист и разработчик игр. Создаю проекты на Unreal Engine, C++ и других технологиях. Люблю футбол, шахматы и изучаю английский язык.",
+        projects_title: "Мои проекты",
+        p1_title: "Drift Car",
+        p1_text: "Реалистичный симулятор дрифта с проработанной физикой автомобиля.",
+        p2_title: "Robot War",
+        p2_text: "Мультиплеерный шутер с различными способностями персонажей.",
+        p3_title: "Warcos 2",
+        p3_text: "FPS-шутер с реалистичной физикой и новыми способностями персонажей. <a href='https://store.steampowered.com/app/2498610/Warcos_2/' target='_blank'>Ссылка на Steam</a>",
+        contacts_title: "Контакты",
+        footer_name: "Нурсултан Кошоев"
+    },
+    en: {
+        name: "Nursultan Koshoev",
+        nav_about: "About Me",
+        nav_projects: "Projects",
+        nav_contacts: "Contacts",
+        about_title: "About Me",
+        about_text: "I am a programmer and game developer. I create projects using Unreal Engine, C++, and other technologies. I love football, chess, and learning English.",
+        projects_title: "My Projects",
+        p1_title: "Drift Car",
+        p1_text: "A realistic drift simulator with detailed car physics.",
+        p2_title: "Robot War",
+        p2_text: "Multiplayer shooter with various character abilities.",
+        p3_title: "Warcos 2",
+        p3_text: "FPS shooter with realistic physics and new character abilities. <a href='https://store.steampowered.com/app/2498610/Warcos_2/' target='_blank'>Steam Link</a>",
+        contacts_title: "Contacts",
+        footer_name: "Nursultan Koshoev"
+    }
+};
+
+function toggleLang() {
+    lang = (lang === "ru") ? "en" : "ru";
+    document.querySelector(".lang-btn").textContent = (lang === "ru") ? "EN" : "RU";
+    for (const key in content[lang]) {
+        document.getElementById(key).innerHTML = content[lang][key];
+    }
+}
+</script>
 
 </body>
 </html>
